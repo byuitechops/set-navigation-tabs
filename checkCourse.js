@@ -1,0 +1,192 @@
+/*eslint-env node, es6*/
+/*eslint no-unused-vars:1*/
+/*eslint no-console:0*/
+
+module.exports = [{
+    "id": "home",
+    "html_url": "/courses/114",
+    "full_url": "https://byui.instructure.com/courses/114",
+    "position": 1,
+    "visibility": "public",
+    "label": "Home",
+    "type": "internal"
+}, {
+    "id": "announcements",
+    "html_url": "/courses/114/announcements",
+    "full_url": "https://byui.instructure.com/courses/114/announcements",
+    "position": 2,
+    "visibility": "public",
+    "label": "Announcements",
+    "type": "internal"
+}, {
+    "id": "syllabus",
+    "html_url": "/courses/114/assignments/syllabus",
+    "full_url": "https://byui.instructure.com/courses/114/assignments/syllabus",
+    "position": 3,
+    "visibility": "public",
+    "label": "Syllabus",
+    "type": "internal"
+}, {
+    "id": "modules",
+    "html_url": "/courses/114/modules",
+    "full_url": "https://byui.instructure.com/courses/114/modules",
+    "position": 4,
+    "visibility": "public",
+    "label": "Modules",
+    "type": "internal"
+}, {
+    "id": "assignments",
+    "html_url": "/courses/114/assignments",
+    "full_url": "https://byui.instructure.com/courses/114/assignments",
+    "position": 5,
+    "visibility": "public",
+    "label": "Assignments",
+    "type": "internal"
+}, {
+    "id": "grades",
+    "html_url": "/courses/114/grades",
+    "full_url": "https://byui.instructure.com/courses/114/grades",
+    "position": 6,
+    "visibility": "public",
+    "label": "Grades",
+    "type": "internal"
+}, {
+    "id": "context_external_tool_2",
+    "html_url": "/courses/114/external_tools/2",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/2",
+    "position": 7,
+    "visibility": "public",
+    "label": "Office 365",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=2\u0026launch_type=course_navigation"
+}, {
+    "id": "pages",
+    "html_url": "/courses/114/wiki",
+    "full_url": "https://byui.instructure.com/courses/114/wiki",
+    "position": 8,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Pages",
+    "type": "internal"
+}, {
+    "id": "files",
+    "html_url": "/courses/114/files",
+    "full_url": "https://byui.instructure.com/courses/114/files",
+    "position": 9,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Files",
+    "type": "internal"
+}, {
+    "id": "outcomes",
+    "html_url": "/courses/114/outcomes",
+    "full_url": "https://byui.instructure.com/courses/114/outcomes",
+    "position": 10,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Outcomes",
+    "type": "internal"
+}, {
+    "id": "conferences",
+    "html_url": "/courses/114/conferences",
+    "full_url": "https://byui.instructure.com/courses/114/conferences",
+    "position": 11,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Conferences",
+    "type": "internal"
+}, {
+    "id": "collaborations",
+    "html_url": "/courses/114/lti_collaborations",
+    "full_url": "https://byui.instructure.com/courses/114/lti_collaborations",
+    "position": 12,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Collaborations",
+    "type": "internal"
+}, {
+    "id": "context_external_tool_1",
+    "html_url": "/courses/114/external_tools/1",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/1",
+    "position": 13,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Google Drive",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=1\u0026launch_type=course_navigation"
+}, {
+    "id": "context_external_tool_9",
+    "html_url": "/courses/114/external_tools/9",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/9",
+    "position": 14,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Arc Media Library",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=9\u0026launch_type=course_navigation"
+}, {
+    "id": "discussions",
+    "html_url": "/courses/114/discussion_topics",
+    "full_url": "https://byui.instructure.com/courses/114/discussion_topics",
+    "position": 15,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Discussions",
+    "type": "internal"
+}, {
+    "id": "quizzes",
+    "html_url": "/courses/114/quizzes",
+    "full_url": "https://byui.instructure.com/courses/114/quizzes",
+    "position": 16,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Quizzes",
+    "type": "internal"
+}, {
+    "id": "people",
+    "html_url": "/courses/114/users",
+    "full_url": "https://byui.instructure.com/courses/114/users",
+    "position": 17,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "People",
+    "type": "internal"
+}, {
+    "id": "context_external_tool_86",
+    "html_url": "/courses/114/external_tools/86",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/86",
+    "position": 18,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Select resources from EQUELLA",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=86\u0026launch_type=course_navigation"
+}, {
+    "id": "context_external_tool_7",
+    "html_url": "/courses/114/external_tools/7",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/7",
+    "position": 19,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Chat",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=7\u0026launch_type=course_navigation"
+}, {
+    "id": "context_external_tool_103",
+    "html_url": "/courses/114/external_tools/103.display=borderless",
+    "full_url": "https://byui.instructure.com/courses/114/external_tools/103.display=borderless",
+    "position": 20,
+    "hidden": true,
+    "visibility": "admins",
+    "label": "Perusall",
+    "type": "external",
+    "url": "https://byui.instructure.com/api/v1/courses/114/external_tools/sessionless_launch?id=103\u0026launch_type=course_navigation"
+}, {
+    "id": "settings",
+    "html_url": "/courses/114/settings",
+    "full_url": "https://byui.instructure.com/courses/114/settings",
+    "position": 21,
+    "visibility": "admins",
+    "label": "Settings",
+    "type": "internal"
+}];

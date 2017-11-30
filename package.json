@@ -1,0 +1,17 @@
+{
+    "name": "set-navigation-tabs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "async": "^2.6.0",
+        "async-map": "^0.1.0",
+        "async-waterfall": "^0.1.5",
+        "canvas-wrapper": "github:byuitechops/Canvas-wrapper"
+    }
+}
