@@ -1,17 +1,29 @@
 {
     "name": "set-navigation-tabs",
     "version": "1.0.0",
-    "description": "",
+    "description": "Set navigation tabs for the course as it is spesified in the tabs.js file",
     "main": "main.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
     "dependencies": {
+        "canvas-wrapper": "git+https://github.com/byuitechops/Canvas-wrapper.git"
+    },
+    "devDependencies": {
         "async": "^2.6.0",
-        "async-map": "^0.1.0",
-        "async-waterfall": "^0.1.5",
-        "canvas-wrapper": "github:byuitechops/Canvas-wrapper"
-    }
+        "child-development-kit": "github:byuitechops/child-development-kit",
+        "tap": "^10.7.3"
+    },
+    "scripts": {
+        "start": "node ./node_modules/child-development-kit/runChild.js",
+        "test": "tap ./node_modules/child-development-kit/testChild.js -T"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/byuitechops/set-navigation-tabs.git"
+    },
+    "author": "Zachary Williams, Daniel Green",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/byuitechops/set-navigation-tabs/issues"
+    },
+    "homepage": "https://github.com/byuitechops/set-navigation-tabs#readme",
+    "childType": "postImport"
 }

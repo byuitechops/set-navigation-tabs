@@ -1,39 +1,28 @@
 /*eslint-env node, es6*/
-/*eslint no-unused-vars:1*/
-/*eslint no-console:0*/
 
-var canvas = require('canvas-wrapper'),
-    tabs = require('./tabs.js'),
-    async = require('async');
+/* Module Description */
 
-module.exports = function (course, stepCallback) {
-    var cID = course.info.canvasOU;
+/* Put dependencies here */
 
-    function changeTab(tab, changeTabCallback) {
-        canvas.put(`/api/v1/courses/${cID}/tabs/${tab.id}?position=${tab.position}&hidden=${tab.hidden}`, {}, function (err) {
-            if (err) {
-                course.throwErr('setTabs', err);
-                changeTabCallback(err);
-                return;
-            }
-            course.success(
-                'setTabs',
-                `The ${tab.id} tab has been reset`
-            );
-            changeTabCallback(null, {});
-        });
-    }
+/* Include this line only if you are going to use Canvas API */
+// const canvas = require('canvas-wrapper');
 
-    async.map(tabs, changeTab, function (err) {
-        if (err) {
-            course.throwErr('setTabs', err);
-            stepCallback(err);
-            return;
-        }
-        course.success(
-            'setTabs',
-            `The tabs of the ${cID} course have been reset`
-        );
-    });
+/* View available course object functions */
+// https://github.com/byuitechops/d2l-to-canvas-conversion-tool/blob/master/documentation/classFunctions.md
+
+module.exports = (course, stepCallback) => {
+    /* Create the module report so that we can access it later as needed.
+    This MUST be done at the beginning of each child module. */
+    course.addModuleReport('moduleName');
+
+    /* Used to log successful actions */
+    course.success('moduleName', 'moduleName successfully ...');
+
+    /* How to report an error (Replace "moduleName") */
+    // course.throwErr('moduleName', e);
+
+    /* You should never call the stepCallback with an error. We want the
+    whole program to run when testing so we can catch all existing errors */
+
     stepCallback(null, course);
-}
+};

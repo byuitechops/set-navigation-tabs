@@ -15,15 +15,15 @@ module.exports = [{
     "position": 4,
     "hidden": false,
     }, {
-    "id": "assignments",
+    "id": "grades",
     "position": 5,
     "hidden": false,
     }, {
-    "id": "grades",
+    "id": "people",
     "position": 6,
     "hidden": false,
     }, {
-    "id": "context_external_tool_2",
+    "id": "settings",
     "position": 7,
     "hidden": false,
     }, {
@@ -31,47 +31,11 @@ module.exports = [{
     "position": 8,
     "hidden": true,
     }, {
-    "id": "files",
+    "id": "outcomes",
     "position": 9,
     "hidden": true,
     }, {
-    "id": "outcomes",
-    "position": 10,
-    "hidden": true,
-    }, {
-    "id": "conferences",
-    "position": 11,
-    "hidden": true,
-    }, {
-    "id": "collaborations",
-    "position": 12,
-    "hidden": true,
-    }, {
-    "id": "context_external_tool_1",
-    "position": 13,
-    "hidden": true,
-    }, {
-    "id": "context_external_tool_9",
-    "position": 14,
-    "hidden": true,
-    }, {
-    "id": "discussions",
-    "position": 15,
-    "hidden": true,
-    }, {
-    "id": "quizzes",
-    "position": 16,
-    "hidden": true,
-    }, {
-    "id": "people",
-    "position": 17,
-    "hidden": true,
-    }, {
-    "id": "context_external_tool_86",
-    "position": 18,
-    "hidden": true,
-    }, {
-    "id": "context_external_tool_7",
-    "position": 19,
+    "id": "files",
+    "position": 10npm,
     "hidden": true,
     }];
