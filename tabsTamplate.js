@@ -15,27 +15,19 @@ module.exports = [{
     "position": 4,
     "hidden": false,
     }, {
-    "id": "grades",
+    "id": "people",
     "position": 5,
     "hidden": false,
     }, {
-    "id": "people",
-    "position": 6,
-    "hidden": false,
-    }, {
-    "id": "settings",
-    "position": 7,
-    "hidden": false,
-    }, {
     "id": "pages",
-    "position": 8,
+    "position": 6,
     "hidden": true,
     }, {
     "id": "outcomes",
-    "position": 9,
+    "position": 7,
     "hidden": true,
     }, {
     "id": "files",
-    "position": 10npm,
+    "position": 8,
     "hidden": true,
     }];
