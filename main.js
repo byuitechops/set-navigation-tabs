@@ -2,7 +2,7 @@
 /*eslint no-unused-vars:1*/
 /*eslint no-console:0*/
 
-/* The module sets up the course navigation tabs as it is spesified in the tabs.js file */
+/* The module sets up the course navigation tabs as it is spesified in the tabsTamplate.js file */
 
 var canvas = require('canvas-wrapper'),
     tabsTemplate = require('./tabsTamplate.js'),
@@ -16,23 +16,24 @@ module.exports = (course, stepCallback) => {
     var cID = course.info.canvasOU;
     var courseName = course.info.fileName.split('.zip')[0];
 
-    // #1
-    function getTabs(getTabsCallback) {
+    // STEP #1
+    // get all tabs (they will be used in steps 2 and 3)
+    function getTabs(cb1) {
         canvas.get(`/api/v1/courses/${cID}/tabs`, function (err, tabs) {
             if (err) {
                 course.throwErr('set-navigation-tabs', err);
-                getTabsCallback(err);
+                cb1(err);
                 return;
             }
             course.success(
                 'set-navigation-tabs',
                 `Retrieved the tabs for the "${courseName}" course (canvasOU: ${course.info.canvasOU})`
             );
-            getTabsCallback(null, tabs);
+            cb1(null, tabs);
         });
     }
 
-    // #2
+    // #2-1a (called from step #2-1)
     function hideTab(tab, cb2) {
         var urlOut = `/api/v1/courses/${cID}/tabs/${tab.id}`,
             options = {
@@ -57,74 +58,85 @@ module.exports = (course, stepCallback) => {
         }
     }
 
-    function setTabsHidden(tabs, cb1) {
-        async.eachSeries(tabs, hideTab, function (eachErr) {
-            if (eachErr) {
-                course.throwErr('set-navigation-tabs', eachErr);
-                cb1(null, course);
-                return;
-            }
-            course.success(
-                'set-navigation-tabs',
-                `All tabs for the "${courseName}" course (canvasOU: ${course.info.canvasOU}) reset to hidden`
-            );
-            cb1(null);
-        });
-    }
-
-    // #3
-    function changeTab(tab, changeTabCallback) {
+    // #2-2a (called from step #2-2)
+    function changeTab(tab, cb3) {
         var urlOut = `/api/v1/courses/${cID}/tabs/${tab.id}`;
         canvas.put(urlOut, {
             position: tab.position,
             hidden: tab.hidden
         }, function (err) {
             if (err) {
-                changeTabCallback(null, {
+                cb3(null, {
                     tab: tab,
                     err: err
                 });
                 return;
             }
-            changeTabCallback(null, {
+            cb3(null, {
                 tab: tab,
                 err: null
             });
         });
     }
 
-    function setCorrectTabs(callback) {
-        async.mapSeries(tabsTemplate, changeTab, function (err, mappedTabs) {
-            var hasErrors = false;
-            mappedTabs.forEach(function (tab) {
-                //there was an error
-                if (tab.err !== null) {
-                    console.log(tab.tab.id)
-                    console.log(tab.err)
-                    course.throwErr('set-navigation-tabs', tab.err.message);
-                    hasErrors = true;
-                } else {
+    // STEP #2-1
+    // remove the tamplate tabs and set the rest to "hidden: true"
+    function setTabs(tabs, cb4) {
+        // remove tabs that are on the template
+        // tabs.filter returns the array of tabs filtered against
+        // tabs.Template.js (all the tabs that need to be passed to
+        // next method for making those tabs hidden)
+        var onesThatNeedToBeHidden = tabs.filter(function (tab) {
+            return tabsTemplate.every(function (tabOnTemplate) {
+                return tabOnTemplate.id !== tab.id;
+            })
+        });
+        // make not-on-tamplate tabs "hidden: true"
+        async.eachSeries(onesThatNeedToBeHidden, hideTab, function (eachErr) {
+            if (eachErr) {
+                course.throwErr('set-navigation-tabs', eachErr);
+                cb4(null, course);
+                return;
+            }
+            course.success(
+                'set-navigation-tabs',
+                `Tabs that need to be hidden for the "${courseName}" course (canvasOU: ${cID}) reset to hidden`
+            );
+
+            // STEP #2-2
+            // reset on-template tabs
+            async.mapSeries(tabsTemplate, changeTab, function (err, mappedTabs) {
+                var hasErrors = false;
+                mappedTabs.forEach(function (tab) {
+                    //there was an error
+                    if (tab.err !== null) {
+                        console.log(tab.tab.id)
+                        console.log(tab.err)
+                        course.throwErr('set-navigation-tabs', tab.err.message);
+                        hasErrors = true;
+                    } else {
+                        course.success(
+                            'set-navigation-tabs',
+                            `The ${tab.tab.id} tab has been reset`
+                        );
+                    }
+                });
+                if (!hasErrors) {
                     course.success(
                         'set-navigation-tabs',
-                        `The ${tab.tab.id} tab has been reset`
+                        `All tabs of the "${courseName}" course (canvasOU: ${cID}) course have been reset`
                     );
                 }
+                // this is the final callback from the bottom of 
+                // the call well (it is defined in the waterfall)
+                cb4(null);
             });
-            if (!hasErrors) {
-                course.success(
-                    'set-navigation-tabs',
-                    `All tabs of the ${cID} course have been reset`
-                );
-            }
-            //            stepCallback(null, mappedTabs);
-            callback();
         });
     }
 
     async.waterfall([
         getTabs,
-        setTabsHidden,
-        setCorrectTabs
+        setTabs,
         ],
         function () {
             stepCallback(null, course);

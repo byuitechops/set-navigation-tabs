@@ -5,7 +5,7 @@
 module.exports = [{
     "id": "announcements",
     "position": 2,
-    "hidden": false,
+    "hidden": true,
     }, {
     "id": "syllabus",
     "position": 3,
