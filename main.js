@@ -5,7 +5,7 @@
 /* The module sets up the course navigation tabs as it is spesified in the tabsTamplate.js file */
 
 var canvas = require('canvas-wrapper'),
-    tabsTemplate = require('./tabsTamplate.js'),
+    tabsTemplate = require('./tabsTemplate.js'),
     async = require('async');
 
 module.exports = (course, stepCallback) => {
