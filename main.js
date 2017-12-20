@@ -107,6 +107,9 @@ module.exports = (course, stepCallback) => {
             // reset on-template tabs
             async.mapSeries(tabsTemplate, changeTab, function (err, mappedTabs) {
                 var hasErrors = false;
+                // the vars to use in the success report
+                var position = 2;
+                var hidden = "false";
                 mappedTabs.forEach(function (tab) {
                     //there was an error
                     if (tab.err !== null) {
@@ -117,8 +120,12 @@ module.exports = (course, stepCallback) => {
                     } else {
                         course.success(
                             'set-navigation-tabs',
-                            `The ${tab.tab.id} tab has been reset`
+                            `The ${tab.tab.id} tab has been set to position "${position}" and hidden "${hidden}"`
                         );
+                    }
+                    position++;
+                    if (position === 6) {
+                        hidden = "true";
                     }
                 });
                 if (!hasErrors) {
