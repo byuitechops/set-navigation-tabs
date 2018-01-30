@@ -106,7 +106,7 @@ module.exports = (course, stepCallback) => {
                         hasErrors = true;
                     } else {
                         course.log('Reorganized Tabs', {
-                            'Tab Id': tab.tab.id,
+                            'Tab Name': tab.tab.id,
                             'New Position': position,
                             'Hidden': hidden
                         });
