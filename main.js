@@ -1,18 +1,12 @@
 /*eslint-env node, es6*/
-/*eslint no-unused-vars:1*/
-/*eslint no-console:0*/
 
-/* The module sets up the course navigation tabs as it is spesified in the tabsTamplate.js file */
+/* The module sets up the course navigation tabs as it is specified in the tabsTamplate.js file */
 
 var canvas = require('canvas-wrapper'),
     tabsTemplate = require('./tabsTemplate.js'),
-    async = require('async');
+    asyncLib = require('async');
 
 module.exports = (course, stepCallback) => {
-    /* Create the module report so that we can access it later as needed.
-    This MUST be done at the beginning of each child module. */
-    course.addModuleReport('set-navigation-tabs');
-
     var cID = course.info.canvasOU;
     var courseName = course.info.fileName.split('.zip')[0];
 
@@ -21,7 +15,7 @@ module.exports = (course, stepCallback) => {
     function getTabs(cb1) {
         canvas.get(`/api/v1/courses/${cID}/tabs`, function (err, tabs) {
             if (err) {
-                course.throwErr('set-navigation-tabs', err);
+                course.error(err);
                 cb1(err);
                 return;
             }
@@ -34,7 +28,7 @@ module.exports = (course, stepCallback) => {
     function hideTab(tab, cb2) {
         var urlOut = `/api/v1/courses/${cID}/tabs/${tab.id}`,
             options = {
-                "hidden": true
+                'hidden': true
             };
         // home and settings cannot be hidden or moved (see Tabs API)
         if (tab.id !== 'home' && tab.id !== 'settings') {
@@ -44,11 +38,13 @@ module.exports = (course, stepCallback) => {
                     cb2(err);
                     return;
                 }
-                course.message(`The ${tab.id} tab has been set hidden`);
+                course.log('Tabs set to hidden', {
+                    'Tab Id': tab.id
+                });
                 cb2(null);
             });
         } else {
-            cb2(null)
+            cb2(null);
         }
     }
 
@@ -83,41 +79,45 @@ module.exports = (course, stepCallback) => {
         var onesThatNeedToBeHidden = tabs.filter(function (tab) {
             return tabsTemplate.every(function (tabOnTemplate) {
                 return tabOnTemplate.id !== tab.id;
-            })
+            });
         });
         // make not-on-tamplate tabs "hidden: true"
-        async.eachSeries(onesThatNeedToBeHidden, hideTab, function (eachErr) {
+        asyncLib.eachSeries(onesThatNeedToBeHidden, hideTab, function (eachErr) {
             if (eachErr) {
                 course.error(eachErr);
                 cb4(null, course);
                 return;
             }
-            course.message(`Tabs that need to be hidden for the "${courseName}" course (canvasOU: ${cID}) reset to hidden`);
+            course.message('Tabs that need to be hidden for the course have been reset to hidden');
 
             // STEP #2-2
             // reset on-template tabs
-            async.mapSeries(tabsTemplate, changeTab, function (err, mappedTabs) {
+            asyncLib.mapSeries(tabsTemplate, changeTab, function (err, mappedTabs) {
                 var hasErrors = false;
                 // the vars to use in the success report
                 var position = 2;
-                var hidden = "false";
+                var hidden = 'false';
                 mappedTabs.forEach(function (tab) {
                     //there was an error
                     if (tab.err !== null) {
-                        console.log(tab.tab.id)
-                        console.log(tab.err)
+                        // console.log(tab.tab.id);
+                        // console.log(tab.err);
                         course.error(tab.err.message);
                         hasErrors = true;
                     } else {
-                        course.message(`The ${tab.tab.id} tab has been set to position "${position}" and hidden "${hidden}"`);
+                        course.log('Reorganized Tabs', {
+                            'Tab Name': tab.tab.id,
+                            'New Position': position,
+                            'Hidden': hidden
+                        });
                     }
                     position++;
                     if (position === 6) {
-                        hidden = "true";
+                        hidden = 'true';
                     }
                 });
                 if (!hasErrors) {
-                    course.message(`All tabs of the "${courseName}" course (canvasOU: ${cID}) course have been reset to match the Online Course Template`);
+                    course.message('All tabs in the course have been reset');
                 }
                 // this is the final callback from the bottom of 
                 // the call well (it is defined in the waterfall)
@@ -126,10 +126,10 @@ module.exports = (course, stepCallback) => {
         });
     }
 
-    async.waterfall([
+    asyncLib.waterfall([
         getTabs,
         setTabs,
-        ],
+    ],
         function () {
             stepCallback(null, course);
         });
