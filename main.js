@@ -25,10 +25,7 @@ module.exports = (course, stepCallback) => {
                 cb1(err);
                 return;
             }
-            course.success(
-                'set-navigation-tabs',
-                `Retrieved the tabs for the "${courseName}" course (canvasOU: ${course.info.canvasOU})`
-            );
+            course.message(`Retrieved the tabs for the "${courseName}" course (canvasOU: ${course.info.canvasOU})`);
             cb1(null, tabs);
         });
     }
@@ -43,14 +40,11 @@ module.exports = (course, stepCallback) => {
         if (tab.id !== 'home' && tab.id !== 'settings') {
             canvas.put(urlOut, options, function (err) {
                 if (err) {
-                    course.throwErr('set-navigation-tabs', err);
+                    course.error(err);
                     cb2(err);
                     return;
                 }
-                course.success(
-                    'set-navigation-tabs',
-                    `The ${tab.id} tab has been set hidden`
-                );
+                course.message(`The ${tab.id} tab has been set hidden`);
                 cb2(null);
             });
         } else {
@@ -94,14 +88,11 @@ module.exports = (course, stepCallback) => {
         // make not-on-tamplate tabs "hidden: true"
         async.eachSeries(onesThatNeedToBeHidden, hideTab, function (eachErr) {
             if (eachErr) {
-                course.throwErr('set-navigation-tabs', eachErr);
+                course.error(eachErr);
                 cb4(null, course);
                 return;
             }
-            course.success(
-                'set-navigation-tabs',
-                `Tabs that need to be hidden for the "${courseName}" course (canvasOU: ${cID}) reset to hidden`
-            );
+            course.message(`Tabs that need to be hidden for the "${courseName}" course (canvasOU: ${cID}) reset to hidden`);
 
             // STEP #2-2
             // reset on-template tabs
@@ -115,13 +106,10 @@ module.exports = (course, stepCallback) => {
                     if (tab.err !== null) {
                         console.log(tab.tab.id)
                         console.log(tab.err)
-                        course.throwErr('set-navigation-tabs', tab.err.message);
+                        course.error(tab.err.message);
                         hasErrors = true;
                     } else {
-                        course.success(
-                            'set-navigation-tabs',
-                            `The ${tab.tab.id} tab has been set to position "${position}" and hidden "${hidden}"`
-                        );
+                        course.message(`The ${tab.tab.id} tab has been set to position "${position}" and hidden "${hidden}"`);
                     }
                     position++;
                     if (position === 6) {
@@ -129,10 +117,7 @@ module.exports = (course, stepCallback) => {
                     }
                 });
                 if (!hasErrors) {
-                    course.success(
-                        'set-navigation-tabs',
-                        `All tabs of the "${courseName}" course (canvasOU: ${cID}) course have been reset`
-                    );
+                    course.message(`All tabs of the "${courseName}" course (canvasOU: ${cID}) course have been reset to match the Online Course Template`);
                 }
                 // this is the final callback from the bottom of 
                 // the call well (it is defined in the waterfall)
