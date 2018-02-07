@@ -54,4 +54,28 @@ module.exports = [{
     "id": "collaborations",
     "position": 14,
     "hidden": true,
+    }, {
+    "id": "context_external_tool_7",
+    "position": 15,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_2",
+    "position": 16,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_1",
+    "position": 17,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_9",
+    "position": 18,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_103",
+    "position": 19,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_132",
+    "position": 20,
+    "hidden": true,
     }];

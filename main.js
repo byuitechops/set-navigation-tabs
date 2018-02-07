@@ -1,4 +1,6 @@
 /*eslint-env node, es6*/
+/*eslint no-unused-vars:1*/
+/*eslint no-console:0, semi: 2*/
 
 /* The module sets up the course navigation tabs as it is specified in the tabsTamplate.js file */
 
