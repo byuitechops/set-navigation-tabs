@@ -6,7 +6,7 @@ var canvas = require('canvas-wrapper'),
     tabsTemplate = require('./tabsTemplate.js'),
     asyncLib = require('async');
 
-module.exports = (course, stepCallback) => {
+module.exports = function (course, stepCallback) {
     var cID = course.info.canvasOU;
     var courseName = course.info.fileName.split('.zip')[0];
 
