@@ -5,7 +5,7 @@
 module.exports = [{
     "id": "announcements",
     "position": 2,
-    "hidden": false,
+    "hidden": true,
     }, {
     "id": "syllabus",
     "position": 3,
@@ -15,19 +15,67 @@ module.exports = [{
     "position": 4,
     "hidden": false,
     }, {
-    "id": "people",
+    "id": "grades",
     "position": 5,
     "hidden": false,
     }, {
-    "id": "pages",
+    "id": "people",
     "position": 6,
-    "hidden": true,
+    "hidden": false,
     }, {
-    "id": "outcomes",
+    "id": "pages",
     "position": 7,
     "hidden": true,
     }, {
     "id": "files",
     "position": 8,
+    "hidden": true,
+    }, {
+    "id": "outcomes",
+    "position": 9,
+    "hidden": true,
+    }, {
+    "id": "assignments",
+    "position": 10,
+    "hidden": true,
+    }, {
+    "id": "quizzes",
+    "position": 11,
+    "hidden": true,
+    }, {
+    "id": "discussions",
+    "position": 12,
+    "hidden": true,
+    }, {
+    "id": "conferences",
+    "position": 13,
+    "hidden": true,
+    }, {
+    "id": "collaborations",
+    "position": 14,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_7",
+    "position": 15,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_2",
+    "position": 16,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_1",
+    "position": 17,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_9",
+    "position": 18,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_103",
+    "position": 19,
+    "hidden": true,
+    }, {
+    "id": "context_external_tool_132",
+    "position": 20,
     "hidden": true,
     }];

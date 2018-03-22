@@ -1,4 +1,6 @@
 /*eslint-env node, es6*/
+/*eslint no-unused-vars:1*/
+/*eslint no-console:0, semi: 2*/
 
 /* The module sets up the course navigation tabs as it is specified in the tabsTamplate.js file */
 
@@ -6,7 +8,7 @@ var canvas = require('canvas-wrapper'),
     tabsTemplate = require('./tabsTemplate.js'),
     asyncLib = require('async');
 
-module.exports = (course, stepCallback) => {
+module.exports = function (course, stepCallback) {
     var cID = course.info.canvasOU;
     var courseName = course.info.fileName.split('.zip')[0];
 
@@ -130,7 +132,7 @@ module.exports = (course, stepCallback) => {
         getTabs,
         setTabs,
     ],
-    function () {
-        stepCallback(null, course);
-    });
+        function () {
+            stepCallback(null, course);
+        });
 };
