@@ -4,7 +4,7 @@
     "description": "Set navigation tabs for the course as it is spesified in the tabs.js file",
     "main": "main.js",
     "dependencies": {
-        "canvas-wrapper": "git+https://github.com/byuitechops/Canvas-wrapper.git"
+        "canvas-wrapper": "git+https://github.com/byuitechops/canvas-wrapper.git"
     },
     "devDependencies": {
         "async": "^2.6.0",
