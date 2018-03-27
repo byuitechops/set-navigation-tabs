@@ -10,7 +10,9 @@ This child module is built to be used by the Brigham Young University - Idaho D2
 It sets the navigation tabs for the imported course following the pattern specified in the tabsTemplate.js file.
 
 ## How to Install
-npm install set-navigation-tabs
+npm install
+npm update 
+npm start to run the child module
 
 ## Run Requirements
 Does not apply
