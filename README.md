@@ -11,7 +11,9 @@ It sets the navigation tabs for the imported course following the pattern specif
 
 ## How to Install
 npm install
-npm update 
+
+npm update
+ 
 npm start to run the child module
 
 ## Run Requirements
