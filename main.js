@@ -83,7 +83,7 @@ module.exports = function (course, stepCallback) {
                 return tabOnTemplate.id !== tab.id;
             });
         });
-        // make not-on-tamplate tabs "hidden: true"
+        // make not-on-template tabs "hidden: true"
         asyncLib.eachSeries(onesThatNeedToBeHidden, hideTab, function (eachErr) {
             if (eachErr) {
                 course.error(eachErr);
@@ -102,8 +102,6 @@ module.exports = function (course, stepCallback) {
                 mappedTabs.forEach(function (tab) {
                     //there was an error
                     if (tab.err !== null) {
-                        // console.log(tab.tab.id);
-                        // console.log(tab.err);
                         course.error(tab.err.message);
                         hasErrors = true;
                     } else {
@@ -120,9 +118,8 @@ module.exports = function (course, stepCallback) {
                 });
                 if (!hasErrors) {
                     course.message('All tabs in the course have been reset');
+                    course.log('The tabs has been reset', {});
                 }
-                // this is the final callback from the bottom of 
-                // the call well (it is defined in the waterfall)
                 cb4(null);
             });
         });

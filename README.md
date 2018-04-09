@@ -16,6 +16,8 @@ npm update
  
 npm start to run the child module
 
+npm start to test the child module
+
 ## Run Requirements
 Does not apply
 
