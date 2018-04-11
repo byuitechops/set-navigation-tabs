@@ -9,9 +9,6 @@ var canvas = require('canvas-wrapper'),
     asyncLib = require('async');
 
 module.exports = function (course, stepCallback) {
-    var cID = course.info.canvasOU;
-    var courseName = course.info.fileName.split('.zip')[0];
-
     // STEP #1
     // get all tabs (they will be used in steps 2 and 3)
     function getTabs(cb1) {
@@ -125,11 +122,21 @@ module.exports = function (course, stepCallback) {
         });
     }
 
+    var validPlatforms = ['online', 'platform'];
+    if (!validPlatforms.includes(course.settings.platform)) {
+        course.message('Invalid Platform. Skipping this child module.');
+        stepCallback(null, course);
+        return;
+    }
+    
+    var cID = course.info.canvasOU;
+    var courseName = course.info.fileName.split('.zip')[0];
+
     asyncLib.waterfall([
         getTabs,
         setTabs,
     ],
-        function () {
-            stepCallback(null, course);
-        });
+    function () {
+        stepCallback(null, course);
+    });
 };
