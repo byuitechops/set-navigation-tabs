@@ -4,10 +4,10 @@
     "description": "Set navigation tabs for the course as it is spesified in the tabs.js file",
     "main": "main.js",
     "dependencies": {
-        "canvas-wrapper": "github:byuitechops/canvas-wrapper"
+        "canvas-wrapper": "github:byuitechops/canvas-wrapper",
+        "async": "^2.6.0"
     },
     "devDependencies": {
-        "async": "^2.6.0",
         "child-development-kit": "github:byuitechops/child-development-kit",
         "tap": "^10.7.3"
     },
