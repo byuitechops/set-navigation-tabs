@@ -35,6 +35,7 @@ course.log
 
 The tab are reset on the next template:
 
+```js
 [{
     "id": "announcements",
     "position": 2,
@@ -112,7 +113,7 @@ The tab are reset on the next template:
     "position": 20,
     "hidden": true,
     }];
-
+```
 ## Outputs
 
 The course changed in resetting the navigation tabs.
@@ -121,11 +122,11 @@ The module does not add anything to `course.info` or anywhere else on the course
 ## Process
 
 The steps: 
-1. get tab information to use in the resetting it
-2. reset the tab with the API call 
+1. Get tabs used in the template course for appropriate platform (campus, online, etc.)
+2. Reset the tab with the API call 
 
 ## Log Categories
-
+``` js
 course.log('Tabs set to hidden', 
                    { 'Tab Id': tab.id });
 
@@ -135,7 +136,7 @@ course.log('Reorganized Tabs',
                             'Hidden': hidden });
 
 course.log('The tabs has been reset', {});
-
+```
 ## Requirements
 
 The template for resetting the tabs is provided in the tabsTemplate.js file.  The first API call get all the tabs from the course.  The second API call resets the tabs accordingly to the template.
