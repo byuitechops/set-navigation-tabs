@@ -8,7 +8,7 @@ module.exports = (course, stepCallback) => {
     var sourceCourses = {
         'online': 1521,
         'pathway': 1521,
-        'campus': 1521
+        'campus': 12497
     };
 
     function getCourseTabs() {
@@ -18,7 +18,7 @@ module.exports = (course, stepCallback) => {
                 courseTabs = tabs;
                 resolve();
             });
-        })
+        });
     }
 
     function getSourceTabs() {
@@ -28,7 +28,7 @@ module.exports = (course, stepCallback) => {
                 sourceTabs = tabs;
                 resolve();
             });
-        })
+        });
     }
 
     function setTab(tab, callback) {
@@ -68,7 +68,7 @@ module.exports = (course, stepCallback) => {
                 if (err) return reject(err);
                 resolve();
             });
-        })
+        });
     }
 
     getCourseTabs()
