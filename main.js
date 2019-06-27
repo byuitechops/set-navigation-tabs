@@ -56,7 +56,9 @@ module.exports = (course, stepCallback) => {
 
     function setTabs() {
         return new Promise((resolve, reject) => {
-            var newTabs = sourceTabs.map(sourceTab => {
+            var newTabs = sourceTabs
+            .filter(sourceTab => courseTabs.find(tab => tab.id === sourceTab.id) !== undefined)
+            .map(sourceTab => {
                 var courseTab = courseTabs.find(tab => tab.id === sourceTab.id);
                 return {
                     id: courseTab.id,
